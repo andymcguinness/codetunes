@@ -1,4 +1,4 @@
-import React, {ReactComponentElement, ReactElement, useRef, useState} from 'react'
+import React, {ReactElement, useRef, useState} from 'react'
 import ReactHowler from 'react-howler'
 import raf from 'raf'
 import { ImVolumeMedium } from 'react-icons/im'
@@ -20,7 +20,7 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [_raf, setRaf] = useState(null);
+    const [thisRaf, setThisRaf] = useState(null);
     const player = useRef<ReactHowler | null>(null);
 
     function handleToggle() {
@@ -74,7 +74,7 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
             setSeek(player.current.seek())
         }
         if (playing) {
-            setRaf(raf(renderSeekPos))
+            setThisRaf(raf(renderSeekPos))
         }
     }
 
@@ -85,11 +85,11 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
     }
 
     function clearRAF() {
-        raf.cancel(_raf);
+        raf.cancel(thisRaf);
     }
 
     return (
-        <div className='max-w-[600px]'>
+        <div className='w-full flex flex-row fixed bottom-0 left-0 right-0 px-4 py-4 bg-gradient-to-r from-emerald-500 to-emerald-300'>
             <ReactHowler
                 src={src}
                 playing={playing}
@@ -101,8 +101,8 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
                 volume={volume}
                 ref={(ref) => {player.current = ref}}
             />
-            <div className="">
-                <div className="">
+            <div className="grid grid-col-1 w-full">
+                <div className="w-full">
                     <Loading loaded={loaded} title={title} artist={artist} />
                     <div>
                         <TimeItem
@@ -114,7 +114,7 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
                         />
                     </div>
                 </div>
-                <div>
+                <div className="w-full">
                     <input
                         className="w-full"
                         type='range'
@@ -127,8 +127,8 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
                         onMouseUp={handleMouseUpSeek}
                     />
                 </div>
-                <div className="">
-                    <div className="">
+                <div className="w-full">
+                    <div className="inline-flex">
                         <button
                             onClick={handleStop}
                         >
@@ -141,8 +141,8 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
                         </button>
                     </div>
                 </div>
-                <div className="">
-                    <div className="">
+                <div className="flex">
+                    <div className="flex">
                         <ImVolumeMedium />
                         <input
                             className=""
@@ -154,14 +154,14 @@ function AudioPlayer({src, title, artist} : { src : string, title: string, artis
                             onChange={e => setVolume( parseFloat(e.target.value) )}
                         />
                     </div>
-                    <div className="">
+                    <div className="flex">
                         <Switch
                             checked={loop}
                             onChange={handleLoopToggle}
                             label="Loop"
                         />
                     </div>
-                    <div className="">
+                    <div className="flex">
                         <Switch
                             checked={mute}
                             onChange={handleMuteToggle}

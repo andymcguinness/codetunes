@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@types/node": "20.4.5",
+    "@types/node": "^20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "dotenv": "^16.3.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "framer-motion": "^10.15.0",
     "graphql": "^16.7.1",
     "graphql-request": "^6.1.0",
     "next": "13.4.12",
+    "node-fetch": "^3.3.2",
     "postcss": "8.4.27",
     "raf": "^3.4.1",
     "react": "18.2.0",
@@ -27,7 +30,10 @@
     "react-icons": "^4.10.1",
     "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.3",
-    "uuid": "^9.0.0"
+    "unsplash-js": "^7.0.18",
+    "uuid": "^9.0.0",
+    "vercel-utils": "^0.1.15",
+    "webpack": "^5.88.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",

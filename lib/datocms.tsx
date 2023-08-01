@@ -5,7 +5,7 @@ export function request({ query, variables } : { query: any, variables: any}) {
 
   const client = new GraphQLClient(endpoint, {
     headers: {
-      authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+      authorization: `Bearer ${process.env.DATOCMS_API_TOKEN}`,
     },
   })
   return client.request(query, variables)
