@@ -9,17 +9,38 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "graphql": "^16.7.1",
+    "graphql-request": "^6.1.0",
     "next": "13.4.12",
     "postcss": "8.4.27",
+    "raf": "^3.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-howler": "^5.2.0",
+    "react-icons": "^4.10.1",
+    "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
-  }
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@types/raf": "^3.4.0",
+    "@types/react-howler": "^5.2.0",
+    "@types/uuid": "^9.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "description": "A playlist for your flow state.",
+  "main": "index.js",
+  "repository": "https://github.com/andymcguinness/codetunes",
+  "author": "Andy McGuinness <michaelandrewmcguinness@gmail.com>",
+  "license": "MIT"
 }
