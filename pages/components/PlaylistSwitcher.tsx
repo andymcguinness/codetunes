@@ -1,16 +1,13 @@
-// React
-import { MouseEvent } from "react";
-
 // Next.js
 import Image from "next/image";
 
 // Framer-motion
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 // React Icons
-import { IconContext} from "react-icons";
+import { IconContext } from "react-icons";
 import { ImShare } from "react-icons/im";
+import Link from "next/link";
 
 // Generating my types
 export interface Playlists {
@@ -47,26 +44,19 @@ export interface CoverImage {
   "url": string;
 }
 
-function handleClick(e : MouseEvent<HTMLButtonElement | HTMLAnchorElement>) : void {
-  e.preventDefault();
-  
-}
-
-// Exporting the main component
-export default function PlaylistSwitcher({ playlists }: { playlists: Playlists }) {
-
+export default function PlaylistsComponent({ playlists }: { playlists: Playlists }) {
   return (
     <div>
       <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Playlists</h1>
       <div className="flex flex-rows relative w-full h-auto">
 
         {playlists.allPlaylists.map((value: Playlist, index: number) => {
-          
-          return (   
-            <motion.div 
-              className="max-w-sm overflow-hidden shadow-lg relative mr-4 [&>*:nth-child(2n)]:mr-0"
-              initial="hidden" 
-              animate="visible" 
+
+          return (
+            <motion.div
+              className="max-w-sm overflow-hidden shadow-lg relative mr-4 [&>*:nth-child(2n)]:mr-0 hover:cursor-pointer"
+              initial="hidden"
+              animate="visible"
               variants={{
                 hidden: {
                   opacity: 0,
@@ -87,18 +77,15 @@ export default function PlaylistSwitcher({ playlists }: { playlists: Playlists }
               whileTap={{ scale: 0.9 }}
               key={index}
             >
-              <Link
-                href="#"
-                onClick={handleClick}
-              >
+              <Link href={`/playlist/${value.title}`}>
                 <div className="text-xs text-white relative">
                   <Image
                     height={512}
                     width={512}
                     fill={false}
-                    src={value.coverImage.url} 
-                    alt="Cover art for the playlist." 
-                  />   
+                    src={value.coverImage.url}
+                    alt="Cover art for the playlist."
+                  />
                   <div className="absolute right-0 left-0 bottom-0 flex items-end px-6 py-5 drop-shadow-large bg-gradient-to-t from-gray-700 items-center">
                     Photo by <a className="inline relative mr-1 ml-1" href={value.coverImage.customData.unsplashUserUrl} target="_blank">{value.coverImage.customData.unsplashUser}</a> on <a className="inline relative ml-1" href="https://unsplash.com/" target="_blank">Unsplash</a>.
 
@@ -108,20 +95,19 @@ export default function PlaylistSwitcher({ playlists }: { playlists: Playlists }
                   </div>
                 </div>
                 <div className="px-6 py-4 relative">
-                  <div className="font-bold text-xl mb-2">{value.title}</div>
+                  <h1 className="font-bold text-xl mb-2">{value.title}</h1>
                   <p className="text-gray-700 text-base">
                     {value.description}
                   </p>
-                  <p className="text-gray-500 text-xs pt-4"></p>
                 </div>
                 <div className="px-6 pt-4 pb-2 relative">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{value.genre}</span>
+                  <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{value.genre}</p>
                 </div>
               </Link>
             </motion.div>
           )
         })}
-        </div>
       </div>
-  );
+    </div>
+  )
 }
