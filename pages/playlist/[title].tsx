@@ -8,6 +8,8 @@ import { request, playlistRequest } from "../../lib/datocms";
 
 import { Playlist, Song } from "../components/PlaylistSwitcher";
 import AudioPlayer from "../components/AudioPlayer";
+import { FaArrowLeft, FaPlay } from "react-icons/fa";
+import Link from "next/link";
 
 export async function getStaticPaths() {
     // Query
@@ -93,7 +95,29 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
     }
 
     return (
-        <div className="flex flex-rows relative w-full h-auto justify-center">
+        <div className="grid grid-col-1 relative w-full h-auto justify-center">
+            <Link href="/" className="flex w-full text-gray-700 text-base py-4 items-center hover:text-blue-400">
+                <FaArrowLeft className="mr-2" />
+                Back to Playlists
+            </Link>
+            <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">{playlist.title}</h1>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 100
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    delay: .4
+                  }
+                },
+              }}
+            >
             <div className="max-w-xl bg-white rounded-lg shadow-lg overflow-hidden mt-4">
                 <div className="relative">
                     <Image
@@ -116,17 +140,15 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                         if (value != currSong) {
                             return (
                                 <motion.div
-                                    className="max-w-sm overflow-hidden shadow-lg relative mr-4 [&>*:nth-child(2n)]:mr-0 hover:cursor-pointer"
+                                    className="overflow-hidden shadow-lg relative hover:cursor-pointer"
                                     initial="hidden"
                                     animate="visible"
                                     variants={{
                                         hidden: {
-                                            opacity: 0,
-                                            y: 100
+                                            opacity: 0
                                         },
                                         visible: {
                                             opacity: 1,
-                                            y: 0,
                                             transition: {
                                                 delay: .4
                                             }
@@ -140,14 +162,12 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                                     key={index}
                                 >
                                     <li className="flex items-center space-x-3 hover:bg-gray-100">
-                                        <button className="p-3 hover:bg-green-500 group focus:outline-none" onClick={() => { playSong(value) }}>
-                                            <svg className="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                        <button className="px-5 py-5 h-full hover:bg-blue-400 group focus:outline-none" onClick={() => { playSong(value) }}>
+                                            <FaPlay className="w-4 h-4 group-hover:text-white" />
                                         </button>
-                                        <div className="flex-1">
-                                            {value.artist} | {value.title}
-                                        </div>
-                                        <div className="text-xs text-gray-400">
-                                            2:58
+                                        <div className="flex-1 flex-rows px-1 py-1">
+                                            <span className="flex font-semibold">{value.title}</span>
+                                            <span className="flex text-base">{value.artist}</span>
                                         </div>
                                     </li>
                                 </motion.div>
@@ -156,6 +176,7 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                     })}
                 </ul>
             </div>
+            </motion.div>
         </div>
     )
 }

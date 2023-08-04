@@ -77,8 +77,8 @@ export default function PlaylistsComponent({ playlists }: { playlists: Playlists
               whileTap={{ scale: 0.9 }}
               key={index}
             >
-              <Link href={`/playlist/${value.title}`}>
                 <div className="text-xs text-white relative">
+                  <Link href={`/playlist/${value.title}`}>
                   <Image
                     height={512}
                     width={512}
@@ -86,6 +86,7 @@ export default function PlaylistsComponent({ playlists }: { playlists: Playlists
                     src={value.coverImage.url}
                     alt="Cover art for the playlist."
                   />
+                  </Link>
                   <div className="absolute right-0 left-0 bottom-0 flex items-end px-6 py-5 drop-shadow-large bg-gradient-to-t from-gray-700 items-center">
                     Photo by <a className="inline relative mr-1 ml-1" href={value.coverImage.customData.unsplashUserUrl} target="_blank">{value.coverImage.customData.unsplashUser}</a> on <a className="inline relative ml-1" href="https://unsplash.com/" target="_blank">Unsplash</a>.
 
@@ -95,15 +96,16 @@ export default function PlaylistsComponent({ playlists }: { playlists: Playlists
                   </div>
                 </div>
                 <div className="px-6 py-4 relative">
+                <Link href={`/playlist/${value.title}`}>
                   <h1 className="font-bold text-xl mb-2">{value.title}</h1>
                   <p className="text-gray-700 text-base">
                     {value.description}
                   </p>
+                  </Link>
                 </div>
                 <div className="px-6 pt-4 pb-2 relative">
                   <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{value.genre}</p>
                 </div>
-              </Link>
             </motion.div>
           )
         })}

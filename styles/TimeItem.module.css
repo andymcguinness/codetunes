@@ -1,0 +1,15 @@
+.timeSpan:first-of-type {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.timeSpan:last-of-type {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
