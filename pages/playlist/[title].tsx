@@ -118,7 +118,7 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                 },
               }}
             >
-            <div className="max-w-xl bg-white rounded-lg shadow-lg overflow-hidden mt-4">
+            <div className="max-w-xl bg-white rounded-lg shadow-lg overflow-hidden mt-4 mb-4">
                 <div className="relative">
                     <Image
                         src={playlist.coverImage.url}
@@ -131,7 +131,7 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                         <span className="opacity-70">{currSong.artist}</span>
                     </div>
                 </div>
-                <AudioPlayer song={currSong} />
+                <AudioPlayer song={currSong} playSong={playSong} nextSong={playlist.songs.length > 1 ? playlist.songs[playlist.songs.indexOf(currSong) + 1] : currSong} />
 
                 <ul className="text-xs sm:text-base divide-y border-t cursor-default">
 
@@ -140,7 +140,7 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                         if (value != currSong) {
                             return (
                                 <motion.div
-                                    className="overflow-hidden shadow-lg relative hover:cursor-pointer"
+                                    className="overflow-hidden relative hover:cursor-pointer"
                                     initial="hidden"
                                     animate="visible"
                                     variants={{
@@ -161,11 +161,11 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                                     whileTap={{ opacity: 0.8 }}
                                     key={index}
                                 >
-                                    <li className="flex items-center space-x-3 hover:bg-gray-100">
+                                    <li className="flex items-center space-x-3 hover:bg-gray-100 group">
                                         <button className="px-5 py-5 h-full hover:bg-blue-400 group focus:outline-none" onClick={() => { playSong(value) }}>
-                                            <FaPlay className="w-4 h-4 group-hover:text-white" />
+                                            <FaPlay className="w-4 h-4 group-hover:text-black hover:text-white" />
                                         </button>
-                                        <div className="flex-1 flex-rows px-1 py-1">
+                                        <div className="flex-1 flex-rows px-1 py-1 group-hover:text-black">
                                             <span className="flex font-semibold">{value.title}</span>
                                             <span className="flex text-base">{value.artist}</span>
                                         </div>

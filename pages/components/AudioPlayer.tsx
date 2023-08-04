@@ -10,7 +10,7 @@ import TimeItem from './TimeItem'
 import { Song } from './PlaylistSwitcher'
 import styles from '../../styles/AudioPlayer.module.css'
 
-export default function AudioPlayer({ song }: { song: Song }): ReactElement {
+export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, playSong: Function, nextSong: Song }): ReactElement {
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [loop, setLoop] = useState(false);
@@ -50,6 +50,8 @@ export default function AudioPlayer({ song }: { song: Song }): ReactElement {
   function handleOnEnd() {
     setPlaying(false);
     clearRAF();
+    playSong(nextSong);
+    setPlaying(true);
   }
 
   function handleStop() {
@@ -94,7 +96,7 @@ export default function AudioPlayer({ song }: { song: Song }): ReactElement {
   }
 
   function nextTrack() {
-    console.log('next track');
+    playSong(nextSong);
   }
 
   useEffect(() => {

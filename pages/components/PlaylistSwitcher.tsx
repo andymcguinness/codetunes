@@ -19,9 +19,7 @@ export interface Playlists {
 export interface Playlist {
   "title": string;
   "genre": string;
-  "songs": [
-    Song
-  ];
+  "songs": Song[];
   "description": string;
   "coverImage": CoverImage;
 }
