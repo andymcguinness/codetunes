@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { parseTime } from '../../lib/helpers'
-import styles from '../../styles/TimeItem.module.css'
+import { parseTime } from '../lib/helpers'
+import styles from '../styles/TimeItem.module.css'
 
 function TimeItem({ time }: { time: string; }) : ReactElement {
     const hms = parseTime(time, false).join(':');

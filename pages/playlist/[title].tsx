@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 
 import { request, playlistRequest } from "../../lib/datocms";
 
-import { Playlist, Song } from "../components/PlaylistSwitcher";
-import AudioPlayer from "../components/AudioPlayer";
+import { Playlist, Song } from "../../components/PlaylistSwitcher";
+import AudioPlayer from "../../components/AudioPlayer";
 import { FaArrowLeft, FaPlay } from "react-icons/fa";
 import Link from "next/link";
 
@@ -88,7 +88,7 @@ export async function getStaticProps({ params } : { params: any }) {
 
 export default function PlaylistComponent({ playlist }: { playlist: Playlist }) {
 
-    const [currSong, setCurrSong] = useState<Song>(playlist.songs[0]);
+    const [currSong, setCurrSong] = useState<Song>(playlist?.songs[0]);
 
     function playSong(song : Song) {
         setCurrSong(song);
@@ -100,7 +100,7 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
                 <FaArrowLeft className="mr-2" />
                 Back to Playlists
             </Link>
-            <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">{playlist.title}</h1>
+            <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">{playlist?.title}</h1>
             <motion.div
               initial="hidden"
               animate="visible"
@@ -121,21 +121,21 @@ export default function PlaylistComponent({ playlist }: { playlist: Playlist }) 
             <div className="max-w-xl bg-white rounded-lg shadow-lg overflow-hidden mt-4 mb-4">
                 <div className="relative">
                     <Image
-                        src={playlist.coverImage.url}
+                        src={playlist?.coverImage.url}
                         height={200}
                         alt={"A title"}
                         width={800}
                     />
                     <div className="absolute p-4 inset-0 flex flex-col justify-end bg-gradient-to-b from-transparent to-gray-900 backdrop backdrop-blur-5 text-white">
-                        <h3 className="font-bold">{currSong.title}</h3>
-                        <span className="opacity-70">{currSong.artist}</span>
+                        <h3 className="font-bold">{currSong?.title}</h3>
+                        <span className="opacity-70">{currSong?.artist}</span>
                     </div>
                 </div>
-                <AudioPlayer song={currSong} playSong={playSong} nextSong={playlist.songs.length > 1 ? playlist.songs[playlist.songs.indexOf(currSong) + 1] : currSong} />
+                <AudioPlayer song={currSong} playSong={playSong} nextSong={playlist?.songs.length > 1 ? playlist?.songs[playlist?.songs.indexOf(currSong) + 1] : currSong} />
 
                 <ul className="text-xs sm:text-base divide-y border-t cursor-default">
 
-                    {playlist.songs.map((value: Song, index: number) => {
+                    {playlist?.songs.map((value: Song, index: number) => {
                         
                         if (value != currSong) {
                             return (

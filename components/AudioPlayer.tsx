@@ -8,7 +8,7 @@ import { Popover, Transition } from '@headlessui/react'
 
 import TimeItem from './TimeItem'
 import { Song } from './PlaylistSwitcher'
-import styles from '../../styles/AudioPlayer.module.css'
+import styles from '../styles/AudioPlayer.module.css'
 
 export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, playSong: Function, nextSong: Song }): ReactElement {
   const [playing, setPlaying] = useState(false);
@@ -107,7 +107,7 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
   return (
     <div className='flex relative'>
       <ReactHowler
-        src={song.song.url}
+        src={song?.song.url}
         playing={playing}
         onPause={handleOnPause}
         onLoad={handleOnLoad}
@@ -158,14 +158,14 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
               <FaBackward className={`${playing ? 'align-middle inline-flex text-white' : 'align-middle inline-flex text-white'}`} />
             </button>
             <button
-              onClick={() => handleToggle()}
+              onClick={handleToggle}
               className="w-10 h-10 rounded-full bg-blue-400 focus:outline-none items-center justify-center flex"
             >
               <FaPause className={`${playing ? 'align-middle inline-flex text-white visible' : 'hidden'}`} />
               <FaPlay className={`${playing ? 'hidden' : 'visible align-middle inline-flex text-white'}`} />
             </button>
             <button
-              onClick={(event) => nextTrack()}
+              onClick={nextTrack}
               className="w-10 h-10 rounded-full bg-blue-400 focus:outline-none items-center justify-center flex"
             >
               <FaForward className={`${playing ? 'align-middle inline-flex text-white' : 'align-middle inline-flex text-white'}`} />

@@ -1,5 +1,5 @@
 import { request } from "../lib/datocms";
-import PlaylistSwitcher, { Playlists } from "./components/PlaylistSwitcher";
+import PlaylistSwitcher, { Playlists } from "../components/PlaylistSwitcher";
 
 export async function getStaticProps({ preview = false }) {
   // Query

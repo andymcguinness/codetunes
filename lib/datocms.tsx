@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
-import { Playlists } from '../pages/components/PlaylistSwitcher'
+import { Playlists } from '../components/PlaylistSwitcher'
 
 export function request({ query, variables } : { query: any, variables: any}) : Promise<Playlists> {
   const endpoint = 'https://graphql.datocms.com/'
