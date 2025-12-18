@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { parseTime } from '../lib/helpers'
 import styles from '../styles/TimeItem.module.css'
 

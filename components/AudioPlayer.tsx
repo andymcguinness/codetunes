@@ -4,11 +4,10 @@ import raf from 'raf'
 import { ImLoop, ImVolumeMedium } from 'react-icons/im'
 import { FaBackward, FaForward, FaPause, FaPlay, FaStop, FaVolumeMute } from 'react-icons/fa'
 import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react'
 
 import TimeItem from './TimeItem'
 import { Song } from './PlaylistSwitcher'
-import styles from '../styles/AudioPlayer.module.css'
 
 export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, playSong: Function, nextSong: Song }): ReactElement {
   const [playing, setPlaying] = useState(false);
@@ -24,7 +23,7 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
   const [seconds, setSeconds] = useState(0);
   const [duration, setDuration] = useState<number>(0);
   const [_raf, set_raf] = useState<number>(0);
-  const player = useRef<ReactHowler>();
+  const player = useRef<ReactHowler>(null);
 
   function handleToggle() {
     if (playing) {
@@ -131,7 +130,7 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
         </div>
         <div className="w-full">
           <input
-            className={styles.inputRange}
+            className="inputRange"
             type='range'
             min='0'
             max={duration ? duration.toFixed(2) : 0}
@@ -172,10 +171,10 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
             </button>
             <div className="relative ml-2">
                 <Popover className="relative">
-                  <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                  <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                     <ImVolumeMedium className={`${mute ? 'hidden' : 'text-gray-900'}`} />
                     <FaVolumeMute className={`${mute ? 'text-blue-400' : 'hidden'}`} />
-                  </Popover.Button>
+                  </PopoverButton>
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-200"
@@ -185,10 +184,10 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
                     leaveFrom="opacity-100 translate-x-0"
                     leaveTo="opacity-0 translate-x-1"
                   >
-                    <Popover.Panel className="absolute -top-3 left-6 z-10 flex w-auto items-center">
+                    <PopoverPanel className="absolute -top-3 left-6 z-10 flex w-auto items-center">
                       <div className="flex bg-gray-200 px-3 py-4 shadow-lg ring-1 ring-gray-900/5">
                       <input
-                        className={styles.volumeRange}
+                        className="volumeRange"
                         type='range'
                         min='0'
                         max='1'
@@ -197,7 +196,7 @@ export default function AudioPlayer({ song, playSong, nextSong }: { song: Song, 
                         onChange={e => setVolume(parseFloat(e.target.value))}
                       />
                       </div>
-                    </Popover.Panel>
+                    </PopoverPanel>
                   </Transition>
                 </Popover>
             </div>

@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export async function getStaticPaths() {
     // Query
-  const PLAYLIST_QUERY = `{
+  const PLAYLIST_QUERY = `query MyQuery {
     allPlaylists {
       coverImage {
         blurhash

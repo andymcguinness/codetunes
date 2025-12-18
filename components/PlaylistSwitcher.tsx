@@ -85,7 +85,7 @@ export default function PlaylistsComponent({ playlists }: { playlists: Playlists
                     alt="Cover art for the playlist."
                   />
                   </Link>
-                  <div className="absolute right-0 left-0 bottom-0 flex items-end px-6 py-5 drop-shadow-large bg-gradient-to-t from-gray-700 items-center">
+                  <div className="absolute right-0 left-0 bottom-0 flex px-6 py-5 drop-shadow-large bg-gradient-to-t from-gray-700 items-center">
                     Photo by <a className="inline relative mr-1 ml-1" href={value.coverImage.customData.unsplashUserUrl} target="_blank">{value.coverImage.customData.unsplashUser}</a> on <a className="inline relative ml-1" href="https://unsplash.com/" target="_blank">Unsplash</a>.
 
                     <IconContext.Provider value={{ className: 'align-middle text-xs flex ml-1' }}>
