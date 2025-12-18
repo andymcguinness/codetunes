@@ -23,13 +23,20 @@
         "./*"
       ]
     },
-    "baseUrl": "/lib"
+    "baseUrl": "/lib",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "decs.d.ts"
+    "decs.d.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

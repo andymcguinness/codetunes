@@ -1,3 +1,5 @@
+'use client';
+
 // Next.js
 import Image from "next/image";
 
@@ -45,7 +47,7 @@ export interface CoverImage {
 export default function PlaylistsComponent({ playlists }: { playlists: Playlists }) {
   return (
     <div>
-      <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Playlists</h1>
+      <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl underline underline-offset-3 decoration-8 decoration-blue-400">Playlists</h1>
       <div className="flex flex-rows relative w-full h-auto">
 
         {playlists.allPlaylists.map((value: Playlist, index: number) => {

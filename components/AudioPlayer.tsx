@@ -1,4 +1,6 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+'use client';
+
+import { ReactElement, useEffect, useRef, useState } from 'react'
 import ReactHowler from 'react-howler'
 import raf from 'raf'
 import { ImLoop, ImVolumeMedium } from 'react-icons/im'
