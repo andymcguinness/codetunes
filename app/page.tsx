@@ -6,45 +6,15 @@ import { executeQuery } from '@datocms/cda-client';
 export const metadata: Metadata = {
   title: 'CodeTunes',
 }
-
-async function getPlaylists() {
-  const query =  `{
-    allPlaylists {
-      coverImage {
-        blurhash
-        customData
-        url
-      }
-      songs {
-        artist
-        attribution
-        song {
-          url
-        }
-        title
-      }
-      description
-      genre
-      title
-    }
-  }`;
-
-  const data : any = await executeQuery(query, {
-    token: `${process.env.DATOCMS_API_KEY}`,
-    variables: {
-      limit: 10
-    }
-  });
-
-  return data;
-}
  
 export default async function Page() {
-  const playlists = await getPlaylists();
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/playlists` : 'http://localhost:3000/api/playlists';
+  const playlistData = await fetch(url);
+  const playlists = await playlistData.json();
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-20 py-20 px-4 md:px-24 md:py-24">
-      <PlaylistSwitcher playlists={playlists} />
+      <PlaylistSwitcher playlists={playlists.data} />
     </main>
   )
 }

@@ -12,6 +12,8 @@ import { FaArrowLeft, FaPlay } from "react-icons/fa";
 import Link from "next/link";
 
 export default function PlaylistWrapper(playlist: any) {
+  console.log(playlist);
+
   const [currSong, setCurrSong] = useState<Song>(playlist?.playlist?.songs[0]);
 
   function playSong(song: Song) {
