@@ -1,6 +1,6 @@
 import { executeQuery } from "@datocms/cda-client";
 
-export async function GET(title: any) {
+export async function GET() {
   const query =  `{
     allPlaylists {
       coverImage {
